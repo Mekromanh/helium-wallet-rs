@@ -35,7 +35,7 @@ impl Cmd {
         let keypair = wallet.decrypt(password.as_bytes())?;
 
         let staking_client = staking::Client::default();
-        let client = helium_api::Client::new_with_base_url(api_url(wallet.public_key.network));
+        let client = new_client(api_url(wallet.public_key.network));
 
         let wallet_key = keypair.public_key();
 
@@ -48,7 +48,7 @@ impl Cmd {
             _key if self.onboarding.is_some() && self.commit => {
                 // Only have staking server sign if there's an onboarding key,
                 // and we're actually going to commit
-                let onboarding_key = self.onboarding.as_ref().unwrap().replace("\"", "");
+                let onboarding_key = self.onboarding.as_ref().unwrap().replace('\"', "");
                 staking_client
                     .sign(&onboarding_key, &txn.in_envelope())
                     .await

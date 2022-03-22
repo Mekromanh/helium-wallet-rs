@@ -1,9 +1,8 @@
 [package]
 name = "helium-wallet"
-version = "1.6.5-dev"
+version = "1.7.4"
 authors = ["Helium <info@helium.com>"]
-edition = "2018"
-build = "build.rs"
+edition = "2021"
 
 description = "A Rust Helium Wallet library"
 readme = "README.md"
@@ -26,13 +25,13 @@ structopt = "0.3"
 dialoguer = "0.8"
 sodiumoxide = "~0.2"
 hex = "0.4"
-hmac = "0"
-sha2 = "0"
+hmac = "0.12"
+sha2 = "0.10"
 base64 = "0"
 reqwest = {version = "0", default-features=false, features=["rustls-tls"]}
 pbkdf2 = {version = "0", default-features=false }
 aes-gcm = "0"
-shamirsecretsharing = {version="0.1.4", features=["have_libsodium"]}
+shamirsecretsharing = {version="0.1.5", features=["have_libsodium"]}
 prettytable-rs = "0.8"
 lazy_static = "1"
 regex = "1"
@@ -42,13 +41,14 @@ serde =  "1"
 serde_derive = "1"
 serde_json = "1"
 rust_decimal = {version = "1", features = ["serde-float"] }
-h3ron = "^0.10"
-geo-types = "^0.6" # pinned by h3ron but required here for geo_types::Point
+h3ron = "^0.13"
+geo-types = "*"
 helium-api = "3"
 angry-purple-tiger = "0"
-helium-crypto = {git = "https://github.com/helium/helium-crypto-rs", tag="v0.2.1"}
+helium-crypto = {git = "https://github.com/helium/helium-crypto-rs", tag="v0.3.3", features = ["multisig"]}
 helium-proto = { git = "https://github.com/helium/proto", branch="master"}
 tokio = {version = "1", features = ["full"]}
+bitvec = "*" # inherits from elliptic-curve crate
 
 [dev-dependencies]
 bs58 = "0.4"
